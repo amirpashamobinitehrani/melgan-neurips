@@ -130,7 +130,7 @@ class Generator(nn.Module):
         return self.model(x)
 
 
-class NLayerDiscriminator(nn.Module):
+class MultiLayerDiscriminator(nn.Module):
     def __init__(self, ndf, n_layers, downsampling_factor):
         super().__init__()
         model = nn.ModuleDict()
@@ -184,7 +184,7 @@ class Discriminator(nn.Module):
         super().__init__()
         self.model = nn.ModuleDict()
         for i in range(num_D):
-            self.model[f"disc_{i}"] = NLayerDiscriminator(
+            self.model[f"disc_{i}"] = MultiLayerDiscriminator(
                 ndf, n_layers, downsampling_factor
             )
 
